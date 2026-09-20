@@ -1,0 +1,20 @@
+{
+  "name": "nasiko-sentinel-ts",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "TypeScript Model Context Protocol (MCP) Server & Recovery Engine for Nasiko Sentinel",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "test": "node --test dist/tests/*.js"
+  },
+  "keywords": ["mcp", "kubernetes", "autoscaling", "recovery", "typescript", "dronahq"],
+  "author": "Nasiko Sentinel Core Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.4"
+  }
+}
