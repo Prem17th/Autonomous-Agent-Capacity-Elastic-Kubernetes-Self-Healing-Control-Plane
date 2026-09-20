@@ -1,7 +1,7 @@
 # Phase 6A: DronaHQ Connection Preparation Checklist
 
 ## 1. Executive Summary
-This document provides the operational runbook and verification checklist required to connect a **DronaHQ AI Agent** to the **Nasiko Sentinel Model Context Protocol (MCP) Server** over Streamable HTTP.
+This document provides the operational runbook and verification checklist required to connect a **DronaHQ AI Agent** to the **Aegis Sentinel Model Context Protocol (MCP) Server** over Streamable HTTP.
 
 ---
 
@@ -69,7 +69,7 @@ Verified against official DronaHQ documentation (`https://docs.dronahq.com/agent
 | DronaHQ Field | Required Value | Notes |
 | :--- | :--- | :--- |
 | **Tool Type** | `Model Context Protocol (MCP)` | Add via Agent Builder > Tools |
-| **Server Name** | `Nasiko-Sentinel` | Logical identifier in DronaHQ |
+| **Server Name** | `Aegis-Sentinel` | Logical identifier in DronaHQ |
 | **Transport Type** | `Streamable HTTP` | Native MCP network transport |
 | **Server URL** | `https://<your-public-tunnel-domain>/mcp` | Must be an externally reachable HTTPS URL |
 | **Authentication** | `Bearer Token` or `Custom Header` | Select preferred auth mode |
@@ -106,7 +106,7 @@ To ensure safe, controlled verification during the first live DronaHQ connection
 ### Tier 1: Read-Only Tools (TEST FIRST)
 Verify DronaHQ can discover and invoke these non-mutating inspection tools:
 1. `get_health`: Service health check.
-2. `get_agent_status`: Inspect Nasiko deployment status (`agent_id`).
+2. `get_agent_status`: Inspect Aegis deployment status (`agent_id`).
 3. `get_pending_pods`: Query unscheduled pods and normalized requests.
 4. `get_pod_events`: Inspect pod scheduler events.
 5. `get_node_capacity`: Query allocatable compute headroom.

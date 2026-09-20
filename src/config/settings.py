@@ -1,4 +1,4 @@
-"""Configuration management for Nasiko Sentinel."""
+"""Configuration management for Aegis Sentinel."""
 
 import os
 from dataclasses import dataclass, field
@@ -52,7 +52,7 @@ class Settings:
 
     environment: str = "development"
     log_level: str = "INFO"
-    app_name: str = "nasiko-sentinel"
+    app_name: str = "aegis-sentinel"
     app_version: str = "0.1.0"
     mcp_server_host: str = "127.0.0.1"
     mcp_server_port: int = 8000
@@ -71,9 +71,9 @@ class Settings:
     bedrock_timeout_seconds: int = 15
     bedrock_mock_mode: bool = True
 
-    # Kubernetes & Nasiko Endpoints
+    # Kubernetes & Aegis Endpoints
     kubernetes_namespace: Optional[str] = None
-    nasiko_endpoint: Optional[str] = None
+    aegis_endpoint: Optional[str] = None
 
     def validate(self) -> None:
         """Validate configuration settings."""
@@ -142,7 +142,7 @@ class Settings:
         log_level = os.getenv("LOG_LEVEL", "INFO").strip().upper()
         if log_level == "WARN":
             log_level = "WARNING"
-        app_name = os.getenv("APP_NAME", "nasiko-sentinel").strip()
+        app_name = os.getenv("APP_NAME", "aegis-sentinel").strip()
         app_version = os.getenv("APP_VERSION", "0.1.0").strip()
         mcp_server_host = os.getenv("MCP_SERVER_HOST", "127.0.0.1").strip()
         
@@ -203,7 +203,7 @@ class Settings:
         bedrock_mock_mode = raw_mock in {"true", "1", "yes", "on"}
 
         kubernetes_namespace = os.getenv("KUBERNETES_NAMESPACE")
-        nasiko_endpoint = os.getenv("NASIKO_ENDPOINT")
+        aegis_endpoint = os.getenv("AEGIS_ENDPOINT")
 
         settings = cls(
             environment=environment,
@@ -223,7 +223,7 @@ class Settings:
             bedrock_timeout_seconds=bedrock_timeout_seconds,
             bedrock_mock_mode=bedrock_mock_mode,
             kubernetes_namespace=kubernetes_namespace.strip() if kubernetes_namespace else None,
-            nasiko_endpoint=nasiko_endpoint.strip() if nasiko_endpoint else None,
+            aegis_endpoint=aegis_endpoint.strip() if aegis_endpoint else None,
         )
         settings.validate()
         return settings
@@ -248,7 +248,7 @@ class Settings:
             "bedrock_timeout_seconds": self.bedrock_timeout_seconds,
             "bedrock_mock_mode": self.bedrock_mock_mode,
             "kubernetes_namespace": self.kubernetes_namespace,
-            "nasiko_endpoint": self.nasiko_endpoint,
+            "aegis_endpoint": self.aegis_endpoint,
         }
         if safe:
             # Redact any potentially sensitive keys

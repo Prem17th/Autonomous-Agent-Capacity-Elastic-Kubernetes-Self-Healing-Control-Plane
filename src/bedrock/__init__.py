@@ -1,4 +1,4 @@
-"""Bedrock AI reasoning subsystem for Nasiko Sentinel."""
+"""Bedrock AI reasoning subsystem for Aegis Sentinel."""
 
 from src.bedrock.bedrock_reasoner import BedrockRuntimeReasoner
 from src.bedrock.fallback_reasoner import DeterministicFallbackReasoner

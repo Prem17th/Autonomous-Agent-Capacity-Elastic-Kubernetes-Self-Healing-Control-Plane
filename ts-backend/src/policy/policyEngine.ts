@@ -15,7 +15,7 @@ export const DEFAULT_POLICY_CONFIG: PolicyConfig = {
 };
 
 /**
- * Authoritative Recovery Policy Engine for Nasiko Sentinel.
+ * Authoritative Recovery Policy Engine for Aegis Sentinel.
  * 
  * Enforces "AI proposes. Policy decides."
  * Ensures AI models cannot execute unsafe infrastructure modifications.

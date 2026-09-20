@@ -108,3 +108,4 @@ impl RecoveryPolicyEngine {
         self.pool_last_scaled.insert(node_pool.to_string(), Instant::now());
     }
 }
+

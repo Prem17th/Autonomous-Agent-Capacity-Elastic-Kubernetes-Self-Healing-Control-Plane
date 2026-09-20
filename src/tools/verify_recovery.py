@@ -12,7 +12,7 @@ logger = get_logger("tools.verify_recovery")
 
 VERIFY_RECOVERY_NAME = "verify_agent_recovery"
 VERIFY_RECOVERY_DESC = (
-    "Verify whether a previously stalled Nasiko agent has successfully scheduled, "
+    "Verify whether a previously stalled Aegis agent has successfully scheduled, "
     "reached 'Running' status, and has ready replicas serving traffic."
 )
 VERIFY_RECOVERY_SCHEMA = {
@@ -20,7 +20,7 @@ VERIFY_RECOVERY_SCHEMA = {
     "properties": {
         "agent_id": {
             "type": "string",
-            "description": "RFC 4122 UUID v4 of the Nasiko agent.",
+            "description": "RFC 4122 UUID v4 of the Aegis agent.",
         },
         "namespace": {
             "type": "string",
@@ -87,7 +87,7 @@ def handle_verify_agent_recovery(
             "replicas": agent_status.replicas,
             "port": 8000,
             "created_at": agent_status.creation_timestamp,
-            "message": "Nasiko agent workload is healthy, fully scheduled, and actively running.",
+            "message": "Aegis agent workload is healthy, fully scheduled, and actively running.",
         }
     else:
         if rec:

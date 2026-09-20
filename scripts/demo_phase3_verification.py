@@ -1,5 +1,5 @@
 """
-Phase 3 MCP Interface End-to-End Verification Script for Nasiko Sentinel.
+Phase 3 MCP Interface End-to-End Verification Script for Aegis Sentinel.
 
 Demonstrates:
 1. Agent in Pending state with PodScheduled=False & FailedScheduling events.
@@ -72,7 +72,7 @@ def run_mcp_call(server: MCPServer, req_id: int, tool_name: str, arguments: Dict
 
 def main() -> None:
     print("================================================================================")
-    print("NASIKO SENTINEL - PHASE 3 MCP VERIFICATION RUNNER")
+    print("AEGIS SENTINEL - PHASE 3 MCP VERIFICATION RUNNER")
     print("================================================================================")
 
     recovery_tracker.clear()

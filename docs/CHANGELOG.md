@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the Nasiko Sentinel project will be documented in this file.
+All notable changes to the Aegis Sentinel project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -61,7 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Phase 3 Active MCP Tools (`src/tools/`):**
   - `request_scale_up`: Evaluates safety policies and dispatches scale requests to the autoscaler provider (`src/tools/request_scale_up.py`).
   - `wait_for_capacity`: Asynchronous/polling mechanism checking when newly requested capacity reaches Ready state with allocatable headroom (`src/tools/wait_for_capacity.py`).
-  - `verify_agent_recovery`: Confirms whether Nasiko agent deployment and backing pod reached `Running` status with ready replicas (`src/tools/verify_recovery.py`).
+  - `verify_agent_recovery`: Confirms whether Aegis agent deployment and backing pod reached `Running` status with ready replicas (`src/tools/verify_recovery.py`).
   - `get_autoscaler_status`: Reports autoscaler health, provider mode, and operation metrics (`src/tools/autoscaler_status.py`).
   - `get_node_pool_status`: Inspects instance counts, limits, and status of target node pools (`src/tools/autoscaler_status.py`).
   - `get_recovery_status`: Queries audit history and state transitions for active or completed agent recoveries (`src/tools/recovery_status.py`).

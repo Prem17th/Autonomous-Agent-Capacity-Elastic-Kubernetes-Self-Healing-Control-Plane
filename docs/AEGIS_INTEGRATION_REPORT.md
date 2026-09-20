@@ -1,48 +1,48 @@
-# Nasiko Sentinel - Technical Integration & Source Verification Report
+# Aegis Sentinel - Technical Integration & Source Verification Report
 
 ## Executive Summary
-This document provides a rigorous, source-verified analysis of the **`Nasiko-Labs/nasiko`** repository (cloned and inspected at commit head). It establishes the technical contracts, data models, deployment abstractions, and API interfaces governing Nasiko agent lifecycle and Kubernetes scheduling, defining the exact integration boundary for Nasiko Sentinel.
+This document provides a rigorous, source-verified analysis of the **`Aegis-Labs/aegis`** repository (cloned and inspected at commit head). It establishes the technical contracts, data models, deployment abstractions, and API interfaces governing Aegis agent lifecycle and Kubernetes scheduling, defining the exact integration boundary for Aegis Sentinel.
 
 ---
 
 ## 1. Repository Status
-- **Source Repository:** `https://github.com/Nasiko-Labs/nasiko`
+- **Source Repository:** `https://github.com/Aegis-Labs/aegis`
 - **Acquisition Method:** Cloned via `git clone --depth 1` into temporary inspection directory outside Sentinel source tree.
 - **Repository Health & Architecture:** Active multi-crate Rust workspace comprising 28 crates/modules, with complete CLI, Server, Runtime, OCI Registry, and Orchestrator components.
 
 ---
 
 ## 2. Repository Structure
-The Nasiko workspace is structured into specialized crates:
-- `runtime/` (`nasiko-runtime`): Abstract container runtime interface ([`ContainerRuntime`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/runtime/src/lib.rs#L58-L234)) with Docker, Simulated, and Kubernetes abstractions.
-- `server/` (`nasiko-server`): Axum-based HTTP control plane managing agent registry, authentication, builds, and deployments.
-- `cli/` (`nasiko-cli`): Developer CLI (`nasiko deploy`, `nasiko upload`, `nasiko push`, `nasiko status`).
-- `types/` (`nasiko-types`): Shared data models, A2A messaging protocols, and API schemas.
-- `oci/` (`nasiko-oci`): Embedded OCI distribution registry for agent container images and blob artifacts.
-- `orchestrator/` (`nasiko-orchestrator`): Multi-agent flow (MAF) engine, LLM routing, and session management.
+The Aegis workspace is structured into specialized crates:
+- `runtime/` (`aegis-runtime`): Abstract container runtime interface ([`ContainerRuntime`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/runtime/src/lib.rs#L58-L234)) with Docker, Simulated, and Kubernetes abstractions.
+- `server/` (`aegis-server`): Axum-based HTTP control plane managing agent registry, authentication, builds, and deployments.
+- `cli/` (`aegis-cli`): Developer CLI (`aegis deploy`, `aegis upload`, `aegis push`, `aegis status`).
+- `types/` (`aegis-types`): Shared data models, A2A messaging protocols, and API schemas.
+- `oci/` (`aegis-oci`): Embedded OCI distribution registry for agent container images and blob artifacts.
+- `orchestrator/` (`aegis-orchestrator`): Multi-agent flow (MAF) engine, LLM routing, and session management.
 - `gateway/`, `mcp-gateway/`, `agent-proxy/`: Network ingress, MCP tool proxying, and inter-agent communication.
 
 ---
 
 ## 3. Agent Creation Flow
-*Category: VERIFIED FROM NASIKO SOURCE*
+*Category: VERIFIED FROM AEGIS SOURCE*
 
 1. **Input & Packaging**:
    - Agent is packaged as a `.zip` archive containing `AgentCard.json` (metadata, capabilities, skills, transport path) and source/Dockerfile, or referenced via a pre-built OCI container image tag.
 2. **Entry Points**:
-   - **CLI**: [`cli/src/commands/deploy.rs::deploy_with_version_flags`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/cli/src/commands/deploy.rs#L26-L64).
-   - **HTTP API**: `POST /api/agents/upload` ([`server/src/agents/upload.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/server/src/agents/upload.rs#L31)) for file upload, or `POST /api/admin/deploy` for direct container spec deployment.
+   - **CLI**: [`cli/src/commands/deploy.rs::deploy_with_version_flags`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/cli/src/commands/deploy.rs#L26-L64).
+   - **HTTP API**: `POST /api/agents/upload` ([`server/src/agents/upload.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/server/src/agents/upload.rs#L31)) for file upload, or `POST /api/admin/deploy` for direct container spec deployment.
 3. **Identifier Format**:
    - Agent identifier is an **RFC 4122 UUID v4** (`uuid::Uuid`).
-   - Wrapped into [`ContainerId`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/runtime/src/types.rs#L12-L84), validated to be non-empty, alphanumeric + `_`/`-`, and ≤ 63 characters.
+   - Wrapped into [`ContainerId`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/runtime/src/types.rs#L12-L84), validated to be non-empty, alphanumeric + `_`/`-`, and ≤ 63 characters.
 
 ---
 
 ## 4. Kubernetes Deployment Flow
-*Category: VERIFIED FROM NASIKO SOURCE & KUBERNETES CONTRACT*
+*Category: VERIFIED FROM AEGIS SOURCE & KUBERNETES CONTRACT*
 
 1. **Spec Construction**:
-   - Handled uniformly via [`server/src/agents/mod.rs::build_agent_spec`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/server/src/agents/mod.rs#L157-L199).
+   - Handled uniformly via [`server/src/agents/mod.rs::build_agent_spec`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/server/src/agents/mod.rs#L157-L199).
    - Keyed **strictly on the agent UUID** (`ContainerId::from_uuid(agent_id)`), guaranteeing no cross-team name collisions.
 2. **Runtime Invocation**:
    - Control plane invokes `runtime.deploy(&DeploymentSpec)`.
@@ -55,7 +55,7 @@ The Nasiko workspace is structured into specialized crates:
 ---
 
 ## 5. Kubernetes Resource Mapping
-*Category: VERIFIED FROM NASIKO SOURCE*
+*Category: VERIFIED FROM AEGIS SOURCE*
 
 | Kubernetes Resource | Naming / Identification | Source Reference |
 | :--- | :--- | :--- |
@@ -68,9 +68,9 @@ The Nasiko workspace is structured into specialized crates:
 ---
 
 ## 6. Agent Identity Mapping
-*Category: VERIFIED FROM NASIKO SOURCE*
+*Category: VERIFIED FROM AEGIS SOURCE*
 
-To correlate a Nasiko Agent ID with Kubernetes resources:
+To correlate a Aegis Agent ID with Kubernetes resources:
 - **Agent UUID** directly equals the `k8s_deployment_name` in table `agent_deployments`.
 - The Pod's owner reference points to the `ReplicaSet` generated by Deployment `<agent_uuid>`.
 - Labels applied to pods: `app.kubernetes.io/name = spec.name`.
@@ -79,9 +79,9 @@ To correlate a Nasiko Agent ID with Kubernetes resources:
 ---
 
 ## 7. Agent Status Lifecycle
-*Category: VERIFIED FROM NASIKO SOURCE*
+*Category: VERIFIED FROM AEGIS SOURCE*
 
-Nasiko defines explicit lifecycle states in [`nasiko_runtime::RuntimeState`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/runtime/src/types.rs#L106-L136):
+Aegis defines explicit lifecycle states in [`aegis_runtime::RuntimeState`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/runtime/src/types.rs#L106-L136):
 - `Pending`: Agent workload is being scheduled or container starting up (`replicas_live == 0`).
 - `Running`: Agent pod is live, ready, and serving requests on its endpoint.
 - `Crashed`: Agent container exited with error or hit restart thresholds.
@@ -89,28 +89,28 @@ Nasiko defines explicit lifecycle states in [`nasiko_runtime::RuntimeState`](fil
 - `Stopped`: Intentionally scaled to 0 replicas.
 - `Unknown`: State unrecognized or resource missing.
 
-Status queries in Nasiko:
+Status queries in Aegis:
 - REST API: `GET /api/agents/{id}/deployment` returns `DeploymentRow` with status (`running`, `starting`, `crashed`, `stopped`).
 - Runtime: `runtime.status(&container_id)` polls live Kubernetes pod readiness.
 
 ---
 
 ## 8. Scheduling Failure Detection
-*Category: VERIFIED FROM NASIKO SOURCE & KUBERNETES*
+*Category: VERIFIED FROM AEGIS SOURCE & KUBERNETES*
 
-- **Nasiko Behavior**: Nasiko's `deploy()` returns immediately after applying the manifest. The pod remains in `Pending` state. Nasiko does not contain an internal autoscaler in the OSS codebase; pool scaling is stubbed as EE-only in `runtime/src/lib.rs#L28-L48`.
+- **Aegis Behavior**: Aegis's `deploy()` returns immediately after applying the manifest. The pod remains in `Pending` state. Aegis does not contain an internal autoscaler in the OSS codebase; pool scaling is stubbed as EE-only in `runtime/src/lib.rs#L28-L48`.
 - **Kubernetes Scheduling Plane**:
   - Unschedulable pods produce condition: `PodScheduled = False` with `Reason = Unschedulable`.
   - Emits cluster `Event` with `reason = "FailedScheduling"`, `source.component = "default-scheduler"`.
   - Message details: `0/N nodes available: N Insufficient cpu, N Insufficient memory.`
-- **Sentinel Role**: Nasiko Sentinel observes these exact Kubernetes scheduling events, diagnoses the capacity bottleneck, and provisions required nodes.
+- **Sentinel Role**: Aegis Sentinel observes these exact Kubernetes scheduling events, diagnoses the capacity bottleneck, and provisions required nodes.
 
 ---
 
 ## 9. Resource Requirement Handling
-*Category: VERIFIED FROM NASIKO SOURCE*
+*Category: VERIFIED FROM AEGIS SOURCE*
 
-Defined in [`nasiko_runtime::ResourceLimits`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/runtime/src/types.rs#L138-L211):
+Defined in [`aegis_runtime::ResourceLimits`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/runtime/src/types.rs#L138-L211):
 - **CPU Limit/Request**:
   - Unit: Millicores (`cpu_milli: u32`).
   - Default: `500` (emitted in Kubernetes manifests as `500m` / 0.5 CPU).
@@ -122,17 +122,17 @@ Defined in [`nasiko_runtime::ResourceLimits`](file:///c:/Users/PREM%20TH/OneDriv
 ---
 
 ## 10. Available Interfaces
-*Category: VERIFIED FROM NASIKO SOURCE*
+*Category: VERIFIED FROM AEGIS SOURCE*
 
-1. **Nasiko Control Plane REST API**:
+1. **Aegis Control Plane REST API**:
    - `GET /api/agents/{id}`: Agent metadata, status, version.
    - `GET /api/agents/{id}/deployment`: Active deployment record (`DeploymentRow`).
    - `POST /api/agents/deployment/{id}/restart`: Scale-up / rollout restart.
    - `POST /api/agents/upload`: Upload and trigger build/deploy.
    - Authentication: HTTP Bearer Token (`Authorization: Bearer <jwt>`).
-2. **Nasiko CLI**:
-   - `nasiko deploy <image> [--port <p>] [--env <k=v>]`
-   - `nasiko agents list` / `nasiko status`
+2. **Aegis CLI**:
+   - `aegis deploy <image> [--port <p>] [--env <k=v>]`
+   - `aegis agents list` / `aegis status`
 3. **Kubernetes API**:
    - Standard `kube-apiserver` endpoints (`/api/v1/namespaces/{ns}/pods`, `/api/v1/namespaces/{ns}/events`, `/api/v1/nodes`).
    - Authentication: In-cluster ServiceAccount token or standard `kubeconfig`.
@@ -142,14 +142,14 @@ Defined in [`nasiko_runtime::ResourceLimits`](file:///c:/Users/PREM%20TH/OneDriv
 ## 11. Recommended Sentinel Integration Boundary
 *Category: DESIGN PROPOSAL BASED ON SOURCE VERIFICATION*
 
-**Recommendation: Hybrid Dual-Layer Boundary (Kubernetes API + Nasiko REST API)**
+**Recommendation: Hybrid Dual-Layer Boundary (Kubernetes API + Aegis REST API)**
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                       Nasiko Sentinel                       │
+│                       Aegis Sentinel                       │
 └──────────────┬───────────────────────────────┬──────────────┘
                │                               │
-    [Kubernetes API Channel]         [Nasiko API Channel]
+    [Kubernetes API Channel]         [Aegis API Channel]
                │                               │
     - Watch Pending Pods             - Map Agent UUID to Name
     - Parse FailedScheduling Events  - Verify Deployment DB State
@@ -157,13 +157,13 @@ Defined in [`nasiko_runtime::ResourceLimits`](file:///c:/Users/PREM%20TH/OneDriv
     - Monitor Node Readiness                   │
                │                               │
                ▼                               ▼
-     Kubernetes Cluster              Nasiko Control Plane
+     Kubernetes Cluster              Aegis Control Plane
 ```
 
 **Why this boundary is optimal:**
 1. **Direct Infrastructure Inspection**: The Kubernetes API is the ground truth for pod scheduling state, scheduler error messages (`Insufficient cpu`), and node capacities. Interrogating Kubernetes directly avoids control-plane polling lag.
-2. **Clean Agent Identity Correlation**: Using Nasiko's verified contract (`k8s_deployment_name == agent_uuid`), Sentinel seamlessly maps Kubernetes pods back to Nasiko agents without heuristic guessing.
-3. **Safe Reconciliation Trigger**: Once capacity is restored, Sentinel can either rely on native Kubernetes scheduler reconciliation or invoke Nasiko's `POST /api/agents/deployment/{id}/restart` to force immediate redeployment.
+2. **Clean Agent Identity Correlation**: Using Aegis's verified contract (`k8s_deployment_name == agent_uuid`), Sentinel seamlessly maps Kubernetes pods back to Aegis agents without heuristic guessing.
+3. **Safe Reconciliation Trigger**: Once capacity is restored, Sentinel can either rely on native Kubernetes scheduler reconciliation or invoke Aegis's `POST /api/agents/deployment/{id}/restart` to force immediate redeployment.
 
 ---
 
@@ -182,7 +182,7 @@ Defined in [`nasiko_runtime::ResourceLimits`](file:///c:/Users/PREM%20TH/OneDriv
 ## 13. Risks and Constraints
 - **RBAC Scope**: Sentinel requires `get`, `list`, `watch` on Pods, Events, and Nodes.
 - **Node Join Latency**: Cloud node provisioning takes 60–180s. MCP tools must employ non-blocking async polling and timeouts.
-- **Namespace Isolation**: Workloads may reside in dedicated namespaces (e.g. `nasiko-agents`). Namespace must be configurable via `KUBERNETES_NAMESPACE`.
+- **Namespace Isolation**: Workloads may reside in dedicated namespaces (e.g. `aegis-agents`). Namespace must be configurable via `KUBERNETES_NAMESPACE`.
 
 ---
 
@@ -190,25 +190,25 @@ Defined in [`nasiko_runtime::ResourceLimits`](file:///c:/Users/PREM%20TH/OneDriv
 
 | Dimension | Classification | Verified Detail |
 | :--- | :--- | :--- |
-| **Agent ID Format** | **VERIFIED (Nasiko Source)** | RFC 4122 UUID v4 |
-| **K8s Workload Type** | **VERIFIED (Nasiko Source)** | `Deployment` named `<agent_uuid>` |
-| **K8s Port Mapping** | **VERIFIED (Nasiko Source)** | ClusterIP Service (80 -> 8000) |
-| **Default Resources** | **VERIFIED (Nasiko Source)** | `500m` CPU / `512Mi` Memory |
-| **Image Pull Secret** | **VERIFIED (Nasiko Source)** | `pull-<agent_uuid>` |
-| **Persistence Mount**| **VERIFIED (Nasiko Source)** | `/workspace` with `subPath: <owner>/<agent>` |
+| **Agent ID Format** | **VERIFIED (Aegis Source)** | RFC 4122 UUID v4 |
+| **K8s Workload Type** | **VERIFIED (Aegis Source)** | `Deployment` named `<agent_uuid>` |
+| **K8s Port Mapping** | **VERIFIED (Aegis Source)** | ClusterIP Service (80 -> 8000) |
+| **Default Resources** | **VERIFIED (Aegis Source)** | `500m` CPU / `512Mi` Memory |
+| **Image Pull Secret** | **VERIFIED (Aegis Source)** | `pull-<agent_uuid>` |
+| **Persistence Mount**| **VERIFIED (Aegis Source)** | `/workspace` with `subPath: <owner>/<agent>` |
 | **Scheduler Events** | **VERIFIED (Kubernetes)** | `reason: FailedScheduling`, component: `default-scheduler` |
-| **Integration Model**| **DESIGN PROPOSAL** | Hybrid Kubernetes API (observability) + Nasiko API (metadata/restart) |
+| **Integration Model**| **DESIGN PROPOSAL** | Hybrid Kubernetes API (observability) + Aegis API (metadata/restart) |
 
 ---
 
 ## 15. Exact Files and Symbols Inspected
-- [`runtime/src/lib.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/runtime/src/lib.rs): `ContainerRuntime`, `PoolScalingPolicy`, `DeploymentStatus`.
-- [`runtime/src/types.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/runtime/src/types.rs): `ContainerId`, `DeploymentSpec`, `ResourceLimits`, `RuntimeState`.
-- [`server/src/agents/mod.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/server/src/agents/mod.rs): `build_agent_spec`, `attach_pull_credential`, `build_image_tag`.
-- [`server/src/agents/deployments.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/server/src/agents/deployments.rs): `DeploymentRow`, `restart_deployment`, `list_deployments`.
-- [`server/src/agents/upload.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/server/src/agents/upload.rs): `upload_and_deploy`, `BuildJobPayload`.
-- [`server/src/agents/utils.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/server/src/agents/utils.rs): `ensure_deployment_tracked`.
-- [`cli/src/commands/deploy.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/cli/src/commands/deploy.rs): `deploy_with_version_flags`.
-- [`cli/src/api.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/cli/src/api.rs): `Client`, `upload_agent`, `poll_build_status`.
-- [`docs/BOOTSTRAP_AND_NETWORKING.md`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/nasiko_inspection/docs/BOOTSTRAP_AND_NETWORKING.md): Managed Kubernetes runtime notes.
+- [`runtime/src/lib.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/runtime/src/lib.rs): `ContainerRuntime`, `PoolScalingPolicy`, `DeploymentStatus`.
+- [`runtime/src/types.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/runtime/src/types.rs): `ContainerId`, `DeploymentSpec`, `ResourceLimits`, `RuntimeState`.
+- [`server/src/agents/mod.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/server/src/agents/mod.rs): `build_agent_spec`, `attach_pull_credential`, `build_image_tag`.
+- [`server/src/agents/deployments.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/server/src/agents/deployments.rs): `DeploymentRow`, `restart_deployment`, `list_deployments`.
+- [`server/src/agents/upload.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/server/src/agents/upload.rs): `upload_and_deploy`, `BuildJobPayload`.
+- [`server/src/agents/utils.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/server/src/agents/utils.rs): `ensure_deployment_tracked`.
+- [`cli/src/commands/deploy.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/cli/src/commands/deploy.rs): `deploy_with_version_flags`.
+- [`cli/src/api.rs`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/cli/src/api.rs): `Client`, `upload_agent`, `poll_build_status`.
+- [`docs/BOOTSTRAP_AND_NETWORKING.md`](file:///c:/Users/PREM%20TH/OneDrive/Desktop/aegis_inspection/docs/BOOTSTRAP_AND_NETWORKING.md): Managed Kubernetes runtime notes.
 

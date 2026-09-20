@@ -1,4 +1,4 @@
-"""Configuration package for Nasiko Sentinel."""
+"""Configuration package for Aegis Sentinel."""
 
 from src.config.settings import Settings, get_settings
 

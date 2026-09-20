@@ -1,4 +1,4 @@
-"""Logging package for Nasiko Sentinel."""
+"""Logging package for Aegis Sentinel."""
 
 from src.logger.logger import get_logger, log_event, setup_logging
 

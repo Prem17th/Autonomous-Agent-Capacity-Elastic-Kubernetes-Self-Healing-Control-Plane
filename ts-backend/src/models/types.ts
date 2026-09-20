@@ -1,5 +1,5 @@
 /**
- * Domain types and models for Nasiko Sentinel TypeScript Engine.
+ * Domain types and models for Aegis Sentinel TypeScript Engine.
  */
 
 export type PodPhase = "Pending" | "Running" | "Succeeded" | "Failed" | "Unknown";
@@ -111,3 +111,4 @@ export interface ScaleResult {
   provider: string;
   agent_id?: string;
 }
+

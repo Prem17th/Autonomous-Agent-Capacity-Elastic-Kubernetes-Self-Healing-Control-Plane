@@ -1,4 +1,4 @@
-# Nasiko Sentinel - Core Dependencies
+# Aegis Sentinel - Core Dependencies
 # Phase 1 uses Python standard library for maximum portability and zero-friction bootstrap.
 # Future phases will add specific dependencies as needed (e.g., kubernetes, boto3, fastmcp).
 

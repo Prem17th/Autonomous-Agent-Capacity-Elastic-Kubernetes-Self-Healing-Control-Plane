@@ -2,7 +2,7 @@
 
 ## ADR-001: Backend Language Selection
 - **Status:** Accepted
-- **Context:** Nasiko Sentinel requires a robust, maintainable backend for its MCP server that easily integrates with Kubernetes APIs, AWS Bedrock SDK (`boto3`), and standardized Model Context Protocol tools.
+- **Context:** Aegis Sentinel requires a robust, maintainable backend for its MCP server that easily integrates with Kubernetes APIs, AWS Bedrock SDK (`boto3`), and standardized Model Context Protocol tools.
 - **Decision:** Use Python 3 (standard library + minimal dependencies).
 - **Rationale:**
   - Python is natively available in the host environment (Python 3.14.7).
@@ -30,7 +30,7 @@
 
 ## ADR-004: Exclusion of Database, Redis, and Vector DB in Phase 1 & 2
 - **Status:** Accepted
-- **Context:** Observation and diagnosis tools query the Kubernetes API and Nasiko REST API directly as live sources of truth.
+- **Context:** Observation and diagnosis tools query the Kubernetes API and Aegis REST API directly as live sources of truth.
 - **Decision:** Do not add databases, key-value stores, or caches in Phase 1 & 2.
 - **Rationale:** Direct API queries guarantee zero cache staleness and prevent divergence between cluster state and Sentinel observations.
 

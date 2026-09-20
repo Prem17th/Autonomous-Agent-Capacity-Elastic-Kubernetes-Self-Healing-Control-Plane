@@ -9,7 +9,7 @@ logger = get_logger("tools.recovery_status")
 
 RECOVERY_STATUS_NAME = "get_recovery_status"
 RECOVERY_STATUS_DESC = (
-    "Retrieve the execution history, current state, and audit logs of Nasiko agent recovery operations."
+    "Retrieve the execution history, current state, and audit logs of Aegis agent recovery operations."
 )
 RECOVERY_STATUS_SCHEMA = {
     "type": "object",
@@ -20,7 +20,7 @@ RECOVERY_STATUS_SCHEMA = {
         },
         "agent_id": {
             "type": "string",
-            "description": "Optional Nasiko agent UUID to query recovery history for.",
+            "description": "Optional Aegis agent UUID to query recovery history for.",
         },
     },
 }

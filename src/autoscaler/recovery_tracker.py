@@ -1,4 +1,4 @@
-"""In-memory recovery state and audit tracker for Nasiko Sentinel."""
+"""In-memory recovery state and audit tracker for Aegis Sentinel."""
 
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
@@ -8,7 +8,7 @@ from src.autoscaler.models import RecoveryRecord, RecoveryState
 
 
 class RecoveryTracker:
-    """Tracks end-to-end recovery lifecycles for Nasiko agents."""
+    """Tracks end-to-end recovery lifecycles for Aegis agents."""
 
     def __init__(self) -> None:
         self._records: Dict[str, RecoveryRecord] = {}

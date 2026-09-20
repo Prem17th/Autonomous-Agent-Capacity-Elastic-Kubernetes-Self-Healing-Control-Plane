@@ -1,4 +1,4 @@
-"""Autoscaler and Recovery engine subsystem for Nasiko Sentinel."""
+"""Autoscaler and Recovery engine subsystem for Aegis Sentinel."""
 
 from src.autoscaler.models import (
     NodePoolStatus,

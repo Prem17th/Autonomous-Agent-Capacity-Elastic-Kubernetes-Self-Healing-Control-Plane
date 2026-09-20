@@ -1,4 +1,4 @@
-"""Streamable HTTP transport adapter for Nasiko Sentinel MCP Server."""
+"""Streamable HTTP transport adapter for Aegis Sentinel MCP Server."""
 
 import json
 import secrets
@@ -266,7 +266,7 @@ class MCPHTTPRequestHandler(BaseHTTPRequestHandler):
 
 class HttpMCPServer:
     """
-    Streamable HTTP Server adapter for Nasiko Sentinel MCP Server.
+    Streamable HTTP Server adapter for Aegis Sentinel MCP Server.
     
     Wraps MCPServer instance and provides an authenticated HTTP transport endpoint
     compatible with remote AI orchestrators and DronaHQ.

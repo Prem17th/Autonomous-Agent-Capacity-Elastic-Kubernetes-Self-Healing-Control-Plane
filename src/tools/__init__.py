@@ -1,4 +1,4 @@
-"""MCP Tools registry for Nasiko Sentinel."""
+"""MCP Tools registry for Aegis Sentinel."""
 
 from src.tools.agent_status import (
     AGENT_STATUS_DESC,

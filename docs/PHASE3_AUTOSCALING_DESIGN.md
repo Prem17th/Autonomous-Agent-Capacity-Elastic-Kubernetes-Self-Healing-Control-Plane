@@ -1,7 +1,7 @@
-# Nasiko Sentinel - Phase 3 Autoscaling & Recovery Design Specification
+# Aegis Sentinel - Phase 3 Autoscaling & Recovery Design Specification
 
 ## Executive Summary
-This document defines the architectural and technical design for **Phase 3: Controlled Autoscaling & Recovery Execution** for Nasiko Sentinel. It establishes how Sentinel safely translates deterministic scheduling bottleneck diagnoses into controlled capacity scaling actions, polls for infrastructure readiness, triggers agent reconciliation, and verifies end-to-end recovery without compromising cluster safety or stability.
+This document defines the architectural and technical design for **Phase 3: Controlled Autoscaling & Recovery Execution** for Aegis Sentinel. It establishes how Sentinel safely translates deterministic scheduling bottleneck diagnoses into controlled capacity scaling actions, polls for infrastructure readiness, triggers agent reconciliation, and verifies end-to-end recovery without compromising cluster safety or stability.
 
 ---
 
@@ -67,7 +67,7 @@ To ensure technical rigor, all statements and design decisions are strictly clas
             │
             ▼
 ┌────────────────────────┐
-│     retry_agent        │ (Triggers Nasiko / K8s Deployment reconciliation)
+│     retry_agent        │ (Triggers Aegis / K8s Deployment reconciliation)
 └───────────┬────────────┘
             │
             ▼
@@ -138,7 +138,7 @@ Sentinel requires the following Kubernetes RBAC permissions:
 
 ### Tool 3: `retry_agent`
 - **Input**:
-  - `agent_id` (string, required): RFC 4122 UUID v4 of the Nasiko agent.
+  - `agent_id` (string, required): RFC 4122 UUID v4 of the Aegis agent.
   - `namespace` (string, optional): Target namespace.
 - **Output**:
   ```json
@@ -187,7 +187,7 @@ A capacity scale-up is considered **READY** only when all of the following condi
 ---
 
 ## 10. Agent Recovery Verification Criteria
-*Classification: VERIFIED KUBERNETES & NASIKO CONTRACT*
+*Classification: VERIFIED KUBERNETES & AEGIS CONTRACT*
 
 An agent workload is considered **RECOVERED & RUNNING** only when:
 1. `Deployment.status.readyReplicas >= 1`.
@@ -229,7 +229,7 @@ Phase 3 will be verified locally with zero cloud dependencies using:
 *Classification: DESIGN PROPOSAL*
 
 1. **Step 1 (Saturated Cluster)**: Cluster starts with full node utilization (0 available CPU).
-2. **Step 2 (Deploy Agent)**: User requests high-compute Nasiko agent (2000m CPU).
+2. **Step 2 (Deploy Agent)**: User requests high-compute Aegis agent (2000m CPU).
 3. **Step 3 (Detection)**: Sentinel detects pod in `Pending` state via `get_pending_pods`.
 4. **Step 4 (Diagnosis)**: `diagnose_capacity` deterministically classifies `insufficient_cpu`.
 5. **Step 5 (Safe Scale)**: `request_scale_up` provisions 1 compute node in pool `default`.
@@ -243,7 +243,7 @@ Phase 3 will be verified locally with zero cloud dependencies using:
 
 1. **Live EKS Cluster Credentials**: Will organizers provide an active EKS cluster with Karpenter/ASG, or should the demo support local Kind/Simulated execution?
 2. **Cloud Region & Instance Types**: If on AWS, which target instance types (e.g. `m5.large`, `c6i.xlarge`) should the default node pool target?
-3. **Target Namespace**: Will agents run in `default`, `nasiko-agents`, or custom namespaces?
+3. **Target Namespace**: Will agents run in `default`, `aegis-agents`, or custom namespaces?
 
 ---
 

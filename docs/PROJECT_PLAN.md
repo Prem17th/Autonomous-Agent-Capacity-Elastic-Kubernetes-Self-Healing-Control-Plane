@@ -1,7 +1,7 @@
-# Nasiko Sentinel - Project Plan & Multi-Phase Roadmap
+# Aegis Sentinel - Project Plan & Multi-Phase Roadmap
 
 ## Executive Summary
-Nasiko Sentinel is an AI-powered elastic Kubernetes capacity and recovery system designed to ensure high-reliability agent deployment for Nasiko. When available Kubernetes node capacity is exhausted, new agent workloads can become unschedulable (Pending). Nasiko Sentinel orchestrates detection, diagnosis via deterministic classification and LLM reasoning, capacity scaling via infrastructure tools, and agent re-scheduling verification.
+Aegis Sentinel is an AI-powered elastic Kubernetes capacity and recovery system designed to ensure high-reliability agent deployment for Aegis. When available Kubernetes node capacity is exhausted, new agent workloads can become unschedulable (Pending). Aegis Sentinel orchestrates detection, diagnosis via deterministic classification and LLM reasoning, capacity scaling via infrastructure tools, and agent re-scheduling verification.
 
 > [!IMPORTANT]
 > **Authoritative Scheduling Principle:**
@@ -23,11 +23,11 @@ Nasiko Sentinel is an AI-powered elastic Kubernetes capacity and recovery system
 
 ---
 
-### Phase 2: Nasiko / Kubernetes Observation & Diagnosis Layer
+### Phase 2: Aegis / Kubernetes Observation & Diagnosis Layer
 **Status: Complete & Verified**
-- [x] Source verification of `Nasiko-Labs/nasiko` repository contracts.
+- [x] Source verification of `Aegis-Labs/aegis` repository contracts.
 - [x] Implement Kubernetes client and adapter layer (`src/kubernetes/`).
-- [x] Implement `get_agent_status`: Inspect Nasiko agent lifecycle (`Deployment/<agent_uuid>`).
+- [x] Implement `get_agent_status`: Inspect Aegis agent lifecycle (`Deployment/<agent_uuid>`).
 - [x] Implement `get_pending_pods`: Identify pods stuck in unschedulable/pending states.
 - [x] Implement `get_pod_events`: Parse scheduling failure reason codes (`FailedScheduling`).
 - [x] Implement `get_node_capacity`: Compute allocatable capacity vs resource requests across nodes.

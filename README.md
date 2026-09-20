@@ -1,25 +1,25 @@
-# Nasiko Sentinel
+# Aegis Sentinel
 
-**AI-powered elastic Kubernetes capacity and recovery system for Nasiko agent creation.**
+**AI-powered elastic Kubernetes capacity and recovery system for Aegis agent creation.**
 
 ---
 
-## 1. What is Nasiko Sentinel?
+## 1. What is Aegis Sentinel?
 
-Nasiko Sentinel is an automated reliability and capacity recovery system designed for agentic workloads deployed on Kubernetes. When a high-density cluster runs out of allocatable CPU, memory, or pod limits, newly requested Nasiko agents can become stuck in `Pending` (unschedulable) states. 
+Aegis Sentinel is an automated reliability and capacity recovery system designed for agentic workloads deployed on Kubernetes. When a high-density cluster runs out of allocatable CPU, memory, or pod limits, newly requested Aegis agents can become stuck in `Pending` (unschedulable) states. 
 
-Nasiko Sentinel serves as a controlled bridge between AI reasoning engines (AWS Bedrock / DronaHQ) and Kubernetes infrastructure, orchestrating bottleneck detection, intelligent recovery planning, safe capacity provisioning, and verified agent re-scheduling.
+Aegis Sentinel serves as a controlled bridge between AI reasoning engines (AWS Bedrock / DronaHQ) and Kubernetes infrastructure, orchestrating bottleneck detection, intelligent recovery planning, safe capacity provisioning, and verified agent re-scheduling.
 
 ---
 
 ## 2. The Problem It Solves
 
-Nasiko deploys dynamic AI agents as containerized workloads on Kubernetes (`Deployment/<agent_uuid>`, `ClusterIP Service 80 -> 8000`). When available cluster capacity is exhausted:
+Aegis deploys dynamic AI agents as containerized workloads on Kubernetes (`Deployment/<agent_uuid>`, `ClusterIP Service 80 -> 8000`). When available cluster capacity is exhausted:
 - New agent deployments stall indefinitely in `Pending` status.
 - Kubernetes scheduling events produce errors like `FailedScheduling` (`Insufficient cpu` / `Insufficient memory` / `Too many pods`).
 - Manual operator intervention is slow, reactive, and brittle.
 
-Nasiko Sentinel solves this by:
+Aegis Sentinel solves this by:
 1. Detecting unschedulable agent pods in real time via direct Kubernetes API observation.
 2. Diagnosing whether bottlenecks stem from CPU, memory, quotas, or node pools deterministically.
 3. Formulating safe scaling plans using AI reasoning and policy limits.
@@ -71,14 +71,14 @@ RECOVERY POLICY ENGINE (Authoritative Safety Bounds)
   ↓
 CONTROLLED AUTOSCALER (Phase 3 - Capacity Provisioning)
   ↓
-NASIKO + KUBERNETES (Phase 2 - Observation & Diagnosis Layer)
+AEGIS + KUBERNETES (Phase 2 - Observation & Diagnosis Layer)
   ↓
 AGENT RUNNING
 ```
 
 ### Multi-Phase Roadmap:
 - **Phase 1 (Completed):** Project Foundation, Configuration, Structured Logging, Error Hierarchy, MCP Server Skeleton.
-- **Phase 2 (Completed):** Nasiko / Kubernetes Observation Layer & Deterministic Capacity Diagnosis.
+- **Phase 2 (Completed):** Aegis / Kubernetes Observation Layer & Deterministic Capacity Diagnosis.
 - **Phase 3 (Completed):** Controlled Autoscaling Provider, Safety Policy Engine, Recovery State Tracking, Verification Tools.
 - **Phase 4 (Completed):** AWS Bedrock AI Reasoning, Proposal Schema Validation, Explicit Deterministic Fallback, `reason_recovery` Tool.
 - **Phase 5 (Completed):** DronaHQ Streamable HTTP Transport Adapter, API Key Auth, Compatibility Testing.
@@ -129,7 +129,7 @@ python src/main.py --health
 ```json
 {
   "status": "ok",
-  "service": "nasiko-sentinel",
+  "service": "aegis-sentinel",
   "version": "0.1.0",
   "environment": "development",
   "phase": 4,
@@ -158,7 +158,7 @@ python src/main.py --health
   },
   "roadmap": {
     "phase_1": "foundation (completed)",
-    "phase_2": "nasiko_kubernetes_observation (completed)",
+    "phase_2": "aegis_kubernetes_observation (completed)",
     "phase_3": "controlled_autoscaling (completed)",
     "phase_4": "bedrock_reasoning (completed)",
     "phase_5": "dronahq_integration (planned)",
@@ -237,7 +237,7 @@ All 109 test cases pass with zero cloud dependencies:
 - [docs/PHASE4_BEDROCK_DESIGN.md](docs/PHASE4_BEDROCK_DESIGN.md): Phase 4 AWS Bedrock Reasoning Design Specification.
 - [docs/PHASE3_AUTOSCALING_DESIGN.md](docs/PHASE3_AUTOSCALING_DESIGN.md): Phase 3 Autoscaling & Recovery Design Specification.
 - [docs/MCP_TOOL_CONTRACTS.md](docs/MCP_TOOL_CONTRACTS.md): Full MCP tool schema definitions and input/output examples.
-- [docs/NASIKO_INTEGRATION_REPORT.md](docs/NASIKO_INTEGRATION_REPORT.md): Source-verified technical report of `Nasiko-Labs/nasiko`.
+- [docs/AEGIS_INTEGRATION_REPORT.md](docs/AEGIS_INTEGRATION_REPORT.md): Source-verified technical report of `Aegis-Labs/aegis`.
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): System architecture and component boundaries.
 - [docs/DECISIONS.md](docs/DECISIONS.md): Architectural Decision Records (ADRs).
 - [docs/TODO.md](docs/TODO.md): Prioritized multi-phase backlog.

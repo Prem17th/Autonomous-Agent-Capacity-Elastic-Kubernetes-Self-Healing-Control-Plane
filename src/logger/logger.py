@@ -1,4 +1,4 @@
-"""Structured logging configuration for Nasiko Sentinel."""
+"""Structured logging configuration for Aegis Sentinel."""
 
 import json
 import logging
@@ -79,7 +79,7 @@ def setup_logging(
 
     level = getattr(logging, log_level.upper(), logging.INFO)
 
-    root_logger = logging.getLogger("nasiko_sentinel")
+    root_logger = logging.getLogger("aegis_sentinel")
     root_logger.setLevel(level)
 
     # Clear existing handlers to avoid duplicates
@@ -97,10 +97,10 @@ def setup_logging(
 
 
 def get_logger(name: Optional[str] = None) -> logging.Logger:
-    """Get a logger within the nasiko_sentinel hierarchy."""
+    """Get a logger within the aegis_sentinel hierarchy."""
     if name:
-        return logging.getLogger(f"nasiko_sentinel.{name}")
-    return logging.getLogger("nasiko_sentinel")
+        return logging.getLogger(f"aegis_sentinel.{name}")
+    return logging.getLogger("aegis_sentinel")
 
 
 def log_event(

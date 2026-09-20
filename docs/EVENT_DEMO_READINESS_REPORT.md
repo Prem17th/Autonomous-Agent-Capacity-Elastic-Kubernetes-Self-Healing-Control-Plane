@@ -1,4 +1,4 @@
-# Nasiko Sentinel — Event Demo Readiness
+# Aegis Sentinel — Event Demo Readiness
 
 ## 1. Overall Status
 

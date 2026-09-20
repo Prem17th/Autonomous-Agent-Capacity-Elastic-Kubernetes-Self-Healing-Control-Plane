@@ -122,7 +122,7 @@ class TestHttpServer(unittest.TestCase):
         status, data = self._make_http_request(path="/health", method="GET")
         self.assertEqual(status, 200)
         self.assertEqual(data.get("status"), "ok")
-        self.assertEqual(data.get("service"), "nasiko-sentinel")
+        self.assertEqual(data.get("service"), "aegis-sentinel")
         self.assertIn("components", data)
 
     # 2. Valid MCP initialize request

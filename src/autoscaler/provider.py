@@ -1,4 +1,4 @@
-"""Abstract Autoscaler Provider Interface for Nasiko Sentinel."""
+"""Abstract Autoscaler Provider Interface for Aegis Sentinel."""
 
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Optional

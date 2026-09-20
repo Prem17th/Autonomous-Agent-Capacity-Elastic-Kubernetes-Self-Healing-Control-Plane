@@ -1,4 +1,4 @@
-# Nasiko Sentinel - Backlog & Task Priority (TODO)
+# Aegis Sentinel - Backlog & Task Priority (TODO)
 
 ## Phase 1 (Foundation) - Completed
 - [x] **[P0]** Establish project directory layout and Git configuration (`.gitignore`).
@@ -10,10 +10,10 @@
 
 ---
 
-## Phase 2 (Nasiko/Kubernetes Observation & Diagnosis) - Completed
-- [x] **[P0]** Source verification of `Nasiko-Labs/nasiko` repository contracts.
+## Phase 2 (Aegis/Kubernetes Observation & Diagnosis) - Completed
+- [x] **[P0]** Source verification of `Aegis-Labs/aegis` repository contracts.
 - [x] **[P0]** Implement Kubernetes models and client abstraction (`src/kubernetes/models.py`, `src/kubernetes/client.py`).
-- [x] **[P0]** Implement `get_agent_status` tool mapped to Nasiko UUID deployments.
+- [x] **[P0]** Implement `get_agent_status` tool mapped to Aegis UUID deployments.
 - [x] **[P0]** Implement `get_pending_pods` tool normalizing resource requests.
 - [x] **[P0]** Implement `get_pod_events` tool extracting `FailedScheduling` event details.
 - [x] **[P0]** Implement `get_node_capacity` tool computing allocatable vs requested CPU, memory, and pod limits.

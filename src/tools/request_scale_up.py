@@ -46,7 +46,7 @@ REQUEST_SCALE_UP_SCHEMA = {
         },
         "agent_id": {
             "type": "string",
-            "description": "Optional Nasiko agent UUID that triggered this capacity request.",
+            "description": "Optional Aegis agent UUID that triggered this capacity request.",
         },
         "dry_run": {
             "type": "boolean",

@@ -9,13 +9,13 @@ from src.logger.logger import get_logger
 logger = get_logger("tools.agent_status")
 
 TOOL_NAME = "get_agent_status"
-TOOL_DESCRIPTION = "Query status of a specific Nasiko agent workload and its backing Kubernetes resources."
+TOOL_DESCRIPTION = "Query status of a specific Aegis agent workload and its backing Kubernetes resources."
 INPUT_SCHEMA = {
     "type": "object",
     "properties": {
         "agent_id": {
             "type": "string",
-            "description": "The RFC 4122 UUID v4 of the Nasiko agent.",
+            "description": "The RFC 4122 UUID v4 of the Aegis agent.",
         },
         "namespace": {
             "type": "string",

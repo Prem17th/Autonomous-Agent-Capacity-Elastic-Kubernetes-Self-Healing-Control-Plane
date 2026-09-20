@@ -1,2 +1,2 @@
-"""Test package for Nasiko Sentinel."""
+"""Test package for Aegis Sentinel."""
 

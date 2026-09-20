@@ -1,4 +1,4 @@
-"""Errors module for Nasiko Sentinel."""
+"""Errors module for Aegis Sentinel."""
 
 from src.errors.exceptions import (
     ConfigError,

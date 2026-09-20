@@ -1,4 +1,4 @@
-"""Model Context Protocol (MCP) Server for Nasiko Sentinel."""
+"""Model Context Protocol (MCP) Server for Aegis Sentinel."""
 
 import json
 import sys
@@ -83,7 +83,7 @@ INTERNAL_ERROR = -32603
 
 class MCPServer:
     """
-    Model Context Protocol (MCP) server for Nasiko Sentinel.
+    Model Context Protocol (MCP) server for Aegis Sentinel.
     
     Exposes verified Kubernetes observation, capacity diagnosis,
     controlled autoscaling/recovery, and AWS Bedrock AI reasoning tools over JSON-RPC 2.0.
@@ -389,7 +389,7 @@ class MCPServer:
         log_event(
             logger,
             20,  # INFO
-            "Starting Nasiko Sentinel MCP Server (stdio transport)",
+            "Starting Aegis Sentinel MCP Server (stdio transport)",
             {
                 "service": self.settings.app_name,
                 "version": self.settings.app_version,
@@ -423,4 +423,4 @@ class MCPServer:
             logger.info("Server received interrupt signal, shutting down.")
         finally:
             self.is_running = False
-            logger.info("Nasiko Sentinel MCP Server stopped.")
+            logger.info("Aegis Sentinel MCP Server stopped.")

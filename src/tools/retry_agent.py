@@ -11,7 +11,7 @@ logger = get_logger("tools.retry_agent")
 
 RETRY_AGENT_NAME = "retry_agent"
 RETRY_AGENT_DESC = (
-    "[OPTIONAL] Trigger reconciliation or restart of a stalled Nasiko agent deployment. "
+    "[OPTIONAL] Trigger reconciliation or restart of a stalled Aegis agent deployment. "
     "Note: Kubernetes automatically re-evaluates Pending pods when capacity is added, so manual retry is optional."
 )
 RETRY_AGENT_SCHEMA = {
@@ -19,7 +19,7 @@ RETRY_AGENT_SCHEMA = {
     "properties": {
         "agent_id": {
             "type": "string",
-            "description": "RFC 4122 UUID v4 of the Nasiko agent to reconcile.",
+            "description": "RFC 4122 UUID v4 of the Aegis agent to reconcile.",
         },
         "namespace": {
             "type": "string",
@@ -44,7 +44,7 @@ def handle_retry_agent(
     if namespace is not None:
         namespace = str(namespace).strip() or None
 
-    logger.info(f"Reconciling Nasiko agent deployment: {agent_id}")
+    logger.info(f"Reconciling Aegis agent deployment: {agent_id}")
     status = adapter.get_agent_status(agent_id=agent_id, namespace=namespace)
 
     if status is None:

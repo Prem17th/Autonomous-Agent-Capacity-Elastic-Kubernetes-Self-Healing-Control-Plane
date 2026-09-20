@@ -1,7 +1,7 @@
 use sentinel_core::{CapacityDiagnosisEngine, K8sEvent, Pod, PodPhase, PodResources, RecoveryPolicyEngine};
 
 fn main() {
-    println!("=== Nasiko Sentinel Rust Core Safety Engine ===");
+    println!("=== Aegis Sentinel Rust Core Safety Engine ===");
     
     let policy = RecoveryPolicyEngine::new(None);
     
@@ -23,7 +23,7 @@ fn main() {
     let diagnosis = CapacityDiagnosisEngine::new();
     let pod = Pod {
         name: "agent-pending-cpu".to_string(),
-        namespace: "nasiko-agents".to_string(),
+        namespace: "aegis-agents".to_string(),
         phase: PodPhase::Pending,
         requested_resources: PodResources { cpu_milli: 2000, memory_bytes: 1073741824 },
     };
@@ -41,3 +41,4 @@ fn main() {
 
     println!("\n=== All Rust Invariants Verified ===");
 }
+

@@ -2,8 +2,8 @@
 name = "sentinel-core"
 version = "0.1.0"
 edition = "2021"
-authors = ["Nasiko Sentinel Core Team"]
-description = "High-Performance Rust Core Engine & Safety Policy Gate for Nasiko Sentinel"
+authors = ["Aegis Sentinel Core Team"]
+description = "High-Performance Rust Core Engine & Safety Policy Gate for Aegis Sentinel"
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
@@ -13,3 +13,4 @@ chrono = { version = "0.4", features = ["serde"] }
 [[bin]]
 name = "sentinel-cli"
 path = "src/main.rs"
+

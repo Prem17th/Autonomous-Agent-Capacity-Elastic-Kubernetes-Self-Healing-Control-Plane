@@ -1,6 +1,6 @@
-# Nasiko Sentinel - MCP Tool Contracts & Specification
+# Aegis Sentinel - MCP Tool Contracts & Specification
 
-This document details the exact JSON-RPC 2.0 tool interface contracts exposed by the Nasiko Sentinel MCP Server in Phase 5 across both `stdio` and `Streamable HTTP` transports.
+This document details the exact JSON-RPC 2.0 tool interface contracts exposed by the Aegis Sentinel MCP Server in Phase 5 across both `stdio` and `Streamable HTTP` transports.
 
 ---
 
@@ -46,7 +46,7 @@ This document details the exact JSON-RPC 2.0 tool interface contracts exposed by
   ```json
   {
     "status": "ok",
-    "service": "nasiko-sentinel",
+    "service": "aegis-sentinel",
     "version": "0.1.0",
     "environment": "development",
     "phase": 3,
@@ -69,7 +69,7 @@ This document details the exact JSON-RPC 2.0 tool interface contracts exposed by
     },
     "roadmap": {
       "phase_1": "foundation (completed)",
-      "phase_2": "nasiko_kubernetes_observation (completed)",
+      "phase_2": "aegis_kubernetes_observation (completed)",
       "phase_3": "controlled_autoscaling (completed)",
       "phase_4": "bedrock_reasoning (planned)",
       "phase_5": "dronahq_integration (planned)",
@@ -81,13 +81,13 @@ This document details the exact JSON-RPC 2.0 tool interface contracts exposed by
 ---
 
 ## Tool 2: `get_agent_status`
-- **Description:** Query status of a specific Nasiko agent workload and backing Kubernetes resources using verified Nasiko deployment mapping (`Deployment/<agent_uuid>`).
+- **Description:** Query status of a specific Aegis agent workload and backing Kubernetes resources using verified Aegis deployment mapping (`Deployment/<agent_uuid>`).
 - **Input Schema:**
   ```json
   {
     "type": "object",
     "properties": {
-      "agent_id": { "type": "string", "description": "The RFC 4122 UUID v4 of the Nasiko agent." },
+      "agent_id": { "type": "string", "description": "The RFC 4122 UUID v4 of the Aegis agent." },
       "namespace": { "type": "string", "description": "Optional Kubernetes namespace." }
     },
     "required": ["agent_id"]
@@ -302,14 +302,14 @@ This document details the exact JSON-RPC 2.0 tool interface contracts exposed by
 ---
 
 ## Tool 11: `get_recovery_status`
-- **Description:** Retrieve audit history, state machine status, and resolution timestamps for Nasiko agent recoveries.
+- **Description:** Retrieve audit history, state machine status, and resolution timestamps for Aegis agent recoveries.
 - **Input Schema:**
   ```json
   {
     "type": "object",
     "properties": {
       "recovery_id": { "type": "string", "description": "Optional specific recovery operation identifier." },
-      "agent_id": { "type": "string", "description": "Optional Nasiko agent UUID." }
+      "agent_id": { "type": "string", "description": "Optional Aegis agent UUID." }
     }
   }
   ```
@@ -342,13 +342,13 @@ This document details the exact JSON-RPC 2.0 tool interface contracts exposed by
 ---
 
 ## Tool 12: `verify_agent_recovery`
-- **Description:** Verify whether a previously stalled Nasiko agent has successfully scheduled, reached `Running` status, and has ready replicas serving traffic.
+- **Description:** Verify whether a previously stalled Aegis agent has successfully scheduled, reached `Running` status, and has ready replicas serving traffic.
 - **Input Schema:**
   ```json
   {
     "type": "object",
     "properties": {
-      "agent_id": { "type": "string", "description": "RFC 4122 UUID v4 of the Nasiko agent." },
+      "agent_id": { "type": "string", "description": "RFC 4122 UUID v4 of the Aegis agent." },
       "namespace": { "type": "string", "description": "Optional Kubernetes namespace." }
     },
     "required": ["agent_id"]
@@ -364,20 +364,20 @@ This document details the exact JSON-RPC 2.0 tool interface contracts exposed by
     "replicas": 1,
     "port": 8000,
     "created_at": "2026-09-20T10:00:00Z",
-    "message": "Nasiko agent workload is healthy, fully scheduled, and actively running."
+    "message": "Aegis agent workload is healthy, fully scheduled, and actively running."
   }
   ```
 
 ---
 
 ## Tool 13: `retry_agent` (Auxiliary / Secondary Tool)
-- **Description:** Optional auxiliary tool to trigger reconciliation or restart of a stalled Nasiko agent deployment.
+- **Description:** Optional auxiliary tool to trigger reconciliation or restart of a stalled Aegis agent deployment.
 - **Input Schema:**
   ```json
   {
     "type": "object",
     "properties": {
-      "agent_id": { "type": "string", "description": "RFC 4122 UUID v4 of the Nasiko agent." },
+      "agent_id": { "type": "string", "description": "RFC 4122 UUID v4 of the Aegis agent." },
       "namespace": { "type": "string", "description": "Optional Kubernetes namespace." }
     },
     "required": ["agent_id"]
@@ -406,7 +406,7 @@ This document details the exact JSON-RPC 2.0 tool interface contracts exposed by
   {
     "type": "object",
     "properties": {
-      "agent_id": { "type": "string", "description": "Optional Nasiko agent UUID." },
+      "agent_id": { "type": "string", "description": "Optional Aegis agent UUID." },
       "pod_name": { "type": "string", "description": "Name of the unschedulable pod." },
       "namespace": { "type": "string", "description": "Kubernetes namespace (default: default).", "default": "default" },
       "deterministic_diagnosis": {

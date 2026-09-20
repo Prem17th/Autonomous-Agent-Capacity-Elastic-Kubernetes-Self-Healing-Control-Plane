@@ -1,4 +1,4 @@
-"""Server package for Nasiko Sentinel."""
+"""Server package for Aegis Sentinel."""
 
 from src.server.health import get_health_status
 from src.server.http_server import HttpMCPServer

@@ -37,7 +37,7 @@ export class HttpServer {
           res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
           res.end(JSON.stringify({
             status: "ok",
-            service: "nasiko-sentinel-ts",
+            service: "aegis-sentinel-ts",
             version: "0.1.0",
             runtime: "typescript",
             environment: "development",
@@ -93,7 +93,7 @@ export class HttpServer {
       });
 
       this.server.listen(port, host, () => {
-        console.log(`[nasiko-sentinel-ts] TypeScript HTTP MCP Server listening on http://${host}:${port}`);
+        console.log(`[aegis-sentinel-ts] TypeScript HTTP MCP Server listening on http://${host}:${port}`);
         resolve();
       });
     });

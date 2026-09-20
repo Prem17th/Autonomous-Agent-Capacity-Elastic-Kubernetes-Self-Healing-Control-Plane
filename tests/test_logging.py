@@ -87,13 +87,13 @@ class TestLogging(unittest.TestCase):
         self.assertEqual(parsed["data"]["service"], "sentinel")
 
     def test_setup_logging(self) -> None:
-        """Verify setup_logging configures root nasiko_sentinel logger."""
+        """Verify setup_logging configures root aegis_sentinel logger."""
         stream = io.StringIO()
         logger = setup_logging(log_level="DEBUG", stream=stream)
         self.assertEqual(logger.level, logging.DEBUG)
         
         child = get_logger("child")
-        self.assertEqual(child.name, "nasiko_sentinel.child")
+        self.assertEqual(child.name, "aegis_sentinel.child")
 
 
 if __name__ == "__main__":

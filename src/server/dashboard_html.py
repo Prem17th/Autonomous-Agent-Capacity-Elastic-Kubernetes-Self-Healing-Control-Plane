@@ -1,11 +1,11 @@
-"""Interactive Command Center HTML Dashboard for Nasiko Sentinel using Tailwind CSS."""
+"""Interactive Command Center HTML Dashboard for Aegis Sentinel using Tailwind CSS."""
 
 DASHBOARD_HTML = """<!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nasiko Sentinel — Autonomous Kubernetes Recovery Command Center</title>
+    <title>Aegis Sentinel — Autonomous Kubernetes Recovery Command Center</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -63,7 +63,7 @@ DASHBOARD_HTML = """<!DOCTYPE html>
                 </div>
                 <div>
                     <h1 class="text-xl font-extrabold tracking-tight flex items-center gap-2">
-                        NASIKO SENTINEL 
+                        AEGIS SENTINEL 
                         <span class="text-xs font-semibold font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2 py-0.5 rounded-md">Tailwind UI &bull; MCP 2024-11-05</span>
                     </h1>
                     <p class="text-xs text-slate-400">Autonomous Agent Capacity &amp; Elastic Kubernetes Self-Healing Control Plane</p>
@@ -118,7 +118,7 @@ DASHBOARD_HTML = """<!DOCTYPE html>
             </div>
 
             <div class="bg-darkBase/70 border border-borderSubtle rounded-xl p-4 flex flex-col gap-1">
-                <span class="text-[11px] font-mono text-slate-400">TARGET NASIKO WORKLOAD</span>
+                <span class="text-[11px] font-mono text-slate-400">TARGET AEGIS WORKLOAD</span>
                 <span class="text-sm font-bold font-mono text-cyan-400" id="target-pod-name">agent-pending-cpu</span>
                 <span class="text-xs font-mono text-slate-400 truncate">UUID: a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11</span>
                 <span class="text-xs font-medium text-amber-400 mt-1">Demand: 2000m CPU &bull; 1 Node Required</span>
@@ -328,7 +328,7 @@ Click "RUN RECOVERY DEMO" to execute the live recovery pipeline. Click any pipel
                     <button onclick="clearStream()" class="text-[11px] font-mono px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-slate-400 border border-borderSubtle">Clear</button>
                 </div>
                 <div id="agent-stream-box" class="bg-darkBase border border-borderSubtle rounded-xl p-3.5 font-mono text-xs text-sky-200 h-56 overflow-y-auto leading-relaxed">
-[SYSTEM INIT] Nasiko Sentinel Command Center loaded (Tailwind UI).
+[SYSTEM INIT] Aegis Sentinel Command Center loaded (Tailwind UI).
 [READY] MCP Server connected via Streamable HTTP (JSON-RPC 2.0).
 [STANDBY] Monitoring Kubernetes agent deployment queue.
                 </div>
@@ -366,7 +366,7 @@ Click "RUN RECOVERY DEMO" to execute the live recovery pipeline. Click any pipel
         </div>
 
         <footer class="text-center text-xs text-slate-500 py-3 border-t border-borderSubtle">
-            Nasiko Sentinel &bull; Tailwind CSS Edition &bull; Protocol Version 2024-11-05 &bull; Dual Transport (Streamable HTTP / stdio)
+            Aegis Sentinel &bull; Tailwind CSS Edition &bull; Protocol Version 2024-11-05 &bull; Dual Transport (Streamable HTTP / stdio)
         </footer>
     </div>
 
@@ -383,7 +383,7 @@ Click "RUN RECOVERY DEMO" to execute the live recovery pipeline. Click any pipel
                 category: "OBSERVED FACT",
                 badgeClass: "bg-blue-500/15 text-blue-400 border-blue-500/30",
                 props: {
-                    "Request Source": "Nasiko Agent Orchestrator",
+                    "Request Source": "Aegis Agent Orchestrator",
                     "Agent Target ID": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
                     "Required Resources": "2000m CPU, 1024Mi Memory",
                     "Deployment Name": "agent-a0eebc99-9c0b"
@@ -648,7 +648,7 @@ Click "RUN RECOVERY DEMO" to execute the live recovery pipeline. Click any pipel
             document.getElementById('engine-state-desc').innerText = "Observing Kubernetes agent deployment queue...";
             setNodeState(1, 'active');
             selectNode(1);
-            appendStream("Observing unschedulable pod 'agent-pending-cpu' in namespace 'nasiko-agents'.");
+            appendStream("Observing unschedulable pod 'agent-pending-cpu' in namespace 'aegis-agents'.");
             await sleep(600);
             setNodeState(1, 'completed');
 
@@ -724,7 +724,7 @@ Click "RUN RECOVERY DEMO" to execute the live recovery pipeline. Click any pipel
 
             clearInterval(timerInterval);
             document.getElementById('engine-state-title').innerText = "RECOVERED / RUNNING";
-            document.getElementById('engine-state-desc').innerText = "Nasiko Agent pod healthy and actively processing requests.";
+            document.getElementById('engine-state-desc').innerText = "Aegis Agent pod healthy and actively processing requests.";
             document.getElementById('metric-pending').innerText = "0";
             document.getElementById('metric-recoveries').innerText = "1";
             appendStream("Autonomous recovery cycle complete. Zero human intervention required.");

@@ -1,8 +1,8 @@
-# Phase 7 — Nasiko Sentinel Command Center UI & Agent Experience Implementation
+# Phase 7 — Aegis Sentinel Command Center UI & Agent Experience Implementation
 
 ## 1. Executive Summary
 
-Phase 7 delivers a high-fidelity, autonomous infrastructure control plane experience for **Nasiko Sentinel**. The UI transforms raw Kubernetes and MCP diagnostic workflows into a visually compelling, evidentiary process graph designed for live stage presentations and architectural evaluations.
+Phase 7 delivers a high-fidelity, autonomous infrastructure control plane experience for **Aegis Sentinel**. The UI transforms raw Kubernetes and MCP diagnostic workflows into a visually compelling, evidentiary process graph designed for live stage presentations and architectural evaluations.
 
 All core backend guarantees, security rules, and architectural invariants were strictly preserved with **109 / 109 automated tests passing**.
 
@@ -16,7 +16,7 @@ All core backend guarantees, security rules, and architectural invariants were s
 
 ### B. Evidentiary Process Pipeline (11 Nodes)
 A horizontal, interactive evidentiary graph that visually proves the complete autonomous recovery lifecycle:
-1. `AGENT REQUEST` (Nasiko requests workload instantiation)
+1. `AGENT REQUEST` (Aegis requests workload instantiation)
 2. `POD SCHEDULING` (Kubernetes default-scheduler triggered)
 3. `PENDING DETECTED` (0/2 nodes available)
 4. `KUBERNETES EVIDENCE` (Event: `FailedScheduling`, `2 Insufficient cpu`)

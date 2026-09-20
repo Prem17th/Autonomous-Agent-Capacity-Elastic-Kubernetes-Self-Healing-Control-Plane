@@ -1,8 +1,8 @@
-# Nasiko Sentinel - Target & Component Architecture
+# Aegis Sentinel - Target & Component Architecture
 
 ## Architectural Overview
 
-Nasiko Sentinel acts as an intelligent, automated reliability layer between user agent requests, Kubernetes infrastructure, and AI reasoning models.
+Aegis Sentinel acts as an intelligent, automated reliability layer between user agent requests, Kubernetes infrastructure, and AI reasoning models.
 
 ```
 USER
@@ -15,7 +15,7 @@ MCP SERVER (Active Foundation & Observation Gateway)
   ↓
 CONTROLLED AUTOSCALER (Phase 3 - Capacity Provisioning & Retry)
   ↓
-NASIKO + KUBERNETES (Phase 2 - Workload Execution & Observation)
+AEGIS + KUBERNETES (Phase 2 - Workload Execution & Observation)
   ↓
 NEW CAPACITY → AGENT RUNNING
 ```
@@ -59,10 +59,10 @@ NEW CAPACITY → AGENT RUNNING
   - Execute read/diagnosis operations (`get_agent_status`, `get_pending_pods`, `get_pod_events`, `get_node_capacity`, `diagnose_capacity`).
   - Distinguish Sentinel service health from external dependency reachability in `get_health`.
 
-### 5. Kubernetes & Nasiko (Observation Implemented in Phase 2)
+### 5. Kubernetes & Aegis (Observation Implemented in Phase 2)
 - **Role:** Target workload execution platform.
 - **Responsibilities:**
-  - Host Nasiko agent pods (`Deployment/<agent_uuid>`).
+  - Host Aegis agent pods (`Deployment/<agent_uuid>`).
   - Emit scheduling error events (`FailedScheduling`, `Insufficient cpu`, etc.) when capacity is exhausted.
   - Note: Live Kubernetes integration is implemented but has not yet been validated against a running Kubernetes cluster.
 
@@ -78,7 +78,7 @@ NEW CAPACITY → AGENT RUNNING
 | **Error Handling** | **CURRENTLY IMPLEMENTED (Phase 1)** | Hierarchical exceptions (`ConfigError`, `InfrastructureError`, etc.) |
 | **MCP Server Core** | **CURRENTLY IMPLEMENTED (Phase 1)** | JSON-RPC 2.0 dispatch, capability negotiation, tool registry |
 | **Service Health Check** | **CURRENTLY IMPLEMENTED (Phase 1 & 2)** | `get_health` distinguishing service health from dependency reachability |
-| **Nasiko / K8s Observation**| **CURRENTLY IMPLEMENTED (Phase 2)** | `get_agent_status`, `get_pending_pods`, `get_pod_events`, `get_node_capacity` |
+| **Aegis / K8s Observation**| **CURRENTLY IMPLEMENTED (Phase 2)** | `get_agent_status`, `get_pending_pods`, `get_pod_events`, `get_node_capacity` |
 | **Deterministic Diagnosis** | **CURRENTLY IMPLEMENTED (Phase 2)** | `diagnose_capacity` (CPU, Memory, Pod limits, Quotas, Taints, Node pools) |
 | **Controlled Autoscaling** | *PLANNED (Phase 3)* | `request_scale_up`, `wait_for_capacity`, `retry_agent`, safeguards |
 | **AWS Bedrock Integration** | *PLANNED (Phase 4)* | LLM reasoning, prompt engineering, multi-step explanation |

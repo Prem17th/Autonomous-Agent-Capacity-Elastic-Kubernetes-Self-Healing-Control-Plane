@@ -17,7 +17,7 @@ class TestConfig(unittest.TestCase):
             settings = Settings.from_env()
             self.assertEqual(settings.environment, "development")
             self.assertEqual(settings.log_level, "INFO")
-            self.assertEqual(settings.app_name, "nasiko-sentinel")
+            self.assertEqual(settings.app_name, "aegis-sentinel")
             self.assertEqual(settings.app_version, "0.1.0")
             self.assertEqual(settings.mcp_server_host, "127.0.0.1")
             self.assertEqual(settings.mcp_server_port, 8000)
@@ -25,7 +25,7 @@ class TestConfig(unittest.TestCase):
             self.assertIsNone(settings.aws_region)
             self.assertIsNone(settings.bedrock_model_id)
             self.assertIsNone(settings.kubernetes_namespace)
-            self.assertIsNone(settings.nasiko_endpoint)
+            self.assertIsNone(settings.aegis_endpoint)
 
     def test_environment_overrides(self) -> None:
         """Verify environment variables correctly override defaults."""
@@ -41,7 +41,7 @@ class TestConfig(unittest.TestCase):
             "AWS_REGION": "us-east-1",
             "BEDROCK_MODEL_ID": "anthropic.claude-3-5-sonnet",
             "KUBERNETES_NAMESPACE": "test-ns",
-            "NASIKO_ENDPOINT": "http://nasiko.local:8080",
+            "AEGIS_ENDPOINT": "http://aegis.local:8080",
         }
         with patch.dict(os.environ, custom_env, clear=True):
             settings = Settings.from_env()
@@ -56,7 +56,7 @@ class TestConfig(unittest.TestCase):
             self.assertEqual(settings.aws_region, "us-east-1")
             self.assertEqual(settings.bedrock_model_id, "anthropic.claude-3-5-sonnet")
             self.assertEqual(settings.kubernetes_namespace, "test-ns")
-            self.assertEqual(settings.nasiko_endpoint, "http://nasiko.local:8080")
+            self.assertEqual(settings.aegis_endpoint, "http://aegis.local:8080")
 
     def test_invalid_environment_raises_error(self) -> None:
         """Verify invalid environment raises ConfigError."""

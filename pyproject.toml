@@ -3,12 +3,12 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "nasiko-sentinel"
+name = "aegis-sentinel"
 version = "0.1.0"
-description = "AI-powered elastic Kubernetes capacity and recovery system for Nasiko agent creation"
+description = "AI-powered elastic Kubernetes capacity and recovery system for Aegis agent creation"
 readme = "README.md"
 authors = [
-    { name = "Nasiko Sentinel Team" }
+    { name = "Aegis Sentinel Team" }
 ]
 requires-python = ">=3.10"
 dependencies = []
@@ -19,7 +19,7 @@ dev = [
 ]
 
 [project.scripts]
-nasiko-sentinel = "src.main:main"
+aegis-sentinel = "src.main:main"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

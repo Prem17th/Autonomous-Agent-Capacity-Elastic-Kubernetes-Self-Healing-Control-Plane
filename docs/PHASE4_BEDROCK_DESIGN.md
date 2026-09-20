@@ -1,7 +1,7 @@
-# Nasiko Sentinel - Phase 4 AWS Bedrock Reasoning Design Specification
+# Aegis Sentinel - Phase 4 AWS Bedrock Reasoning Design Specification
 
 ## Executive Summary
-This document defines the architectural and technical design for **Phase 4: AI Reasoning & AWS Bedrock Integration** for Nasiko Sentinel. It establishes how Sentinel leverages large language model (LLM) reasoning to synthesize deterministic Kubernetes capacity diagnostics into structured remediation plans while strictly enforcing safety guardrails, policy engine supremacy, zero-hallucination execution, and deterministic fallback.
+This document defines the architectural and technical design for **Phase 4: AI Reasoning & AWS Bedrock Integration** for Aegis Sentinel. It establishes how Sentinel leverages large language model (LLM) reasoning to synthesize deterministic Kubernetes capacity diagnostics into structured remediation plans while strictly enforcing safety guardrails, policy engine supremacy, zero-hallucination execution, and deterministic fallback.
 
 ---
 
@@ -153,7 +153,7 @@ Every technical finding and architectural specification in this document is stri
   {
     "agent_id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
     "pod_name": "agent-pending-cpu",
-    "namespace": "nasiko-agents",
+    "namespace": "aegis-agents",
     "resource_requests": { "cpu_milli": 2000, "memory_bytes": 1073741824 },
     "deterministic_diagnosis": {
       "classification": "insufficient_cpu",

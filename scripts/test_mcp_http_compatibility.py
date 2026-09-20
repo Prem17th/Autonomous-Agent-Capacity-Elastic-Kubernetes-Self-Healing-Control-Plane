@@ -53,7 +53,7 @@ def run_http_request(url: str, payload: Dict[str, Any], api_key: str) -> Tuple[i
 
 def main() -> int:
     print("=================================================================")
-    print("Nasiko Sentinel - Phase 5 MCP Streamable HTTP Compatibility Test")
+    print("Aegis Sentinel - Phase 5 MCP Streamable HTTP Compatibility Test")
     print("=================================================================")
 
     api_key = "sentinel-local-verification-key"

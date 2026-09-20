@@ -4,7 +4,7 @@ from typing import Any, Dict, List
 
 # Standard Agent UUID
 SAMPLE_AGENT_ID = "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"
-SAMPLE_NAMESPACE = "nasiko-agents"
+SAMPLE_NAMESPACE = "aegis-agents"
 
 # 1. Agent Deployment Fixture (Running)
 DEPLOYMENT_RUNNING: Dict[str, Any] = {

@@ -37,7 +37,7 @@ WAIT_FOR_CAPACITY_SCHEMA = {
         },
         "agent_id": {
             "type": "string",
-            "description": "Optional Nasiko agent UUID for recovery tracking.",
+            "description": "Optional Aegis agent UUID for recovery tracking.",
         },
     },
 }

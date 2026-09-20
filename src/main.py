@@ -1,4 +1,4 @@
-"""Application entrypoint for Nasiko Sentinel."""
+"""Application entrypoint for Aegis Sentinel."""
 
 import argparse
 import json
@@ -24,8 +24,8 @@ from src.server.mcp_server import MCPServer
 def build_parser() -> argparse.ArgumentParser:
     """Build CLI argument parser."""
     parser = argparse.ArgumentParser(
-        prog="nasiko-sentinel",
-        description="Nasiko Sentinel - AI-powered elastic Kubernetes capacity and recovery system",
+        prog="aegis-sentinel",
+        description="Aegis Sentinel - AI-powered elastic Kubernetes capacity and recovery system",
     )
     parser.add_argument(
         "--version",

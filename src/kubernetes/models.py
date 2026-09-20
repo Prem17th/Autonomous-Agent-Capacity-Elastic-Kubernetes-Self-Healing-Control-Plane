@@ -1,4 +1,4 @@
-"""Normalized Kubernetes data models for Nasiko Sentinel."""
+"""Normalized Kubernetes data models for Aegis Sentinel."""
 
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -177,7 +177,7 @@ class NormalizedNode:
 
 @dataclass
 class NormalizedDeployment:
-    """Normalized representation of a Kubernetes Deployment (representing a Nasiko agent)."""
+    """Normalized representation of a Kubernetes Deployment (representing a Aegis agent)."""
 
     deployment_name: str
     namespace: str

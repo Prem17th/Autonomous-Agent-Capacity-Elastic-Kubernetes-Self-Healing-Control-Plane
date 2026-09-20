@@ -1,4 +1,4 @@
-"""Kubernetes API client abstraction for Nasiko Sentinel."""
+"""Kubernetes API client abstraction for Aegis Sentinel."""
 
 import json
 import os
@@ -120,7 +120,7 @@ class KubernetesClient(BaseKubeClient):
         url = f"{self.api_server.rstrip('/')}{path}"
         headers = {
             "Accept": "application/json",
-            "User-Agent": "nasiko-sentinel/0.1.0",
+            "User-Agent": "aegis-sentinel/0.1.0",
         }
         if self.token:
             headers["Authorization"] = f"Bearer {self.token}"

@@ -1,6 +1,6 @@
 # DronaHQ AI Agent — Sentinel MCP Server Setup Guide
 
-This guide describes how to configure a **DronaHQ AI Agent** to communicate with the **Nasiko Sentinel MCP Server** using DronaHQ's native External MCP Server tool integration.
+This guide describes how to configure a **DronaHQ AI Agent** to communicate with the **Aegis Sentinel MCP Server** using DronaHQ's native External MCP Server tool integration.
 
 *Source Documentation:*  
 Official DronaHQ Agent Tools Guide: [https://docs.dronahq.com/agents/getting-started/tools-overview/](https://docs.dronahq.com/agents/getting-started/tools-overview/)
@@ -12,7 +12,7 @@ Official DronaHQ Agent Tools Guide: [https://docs.dronahq.com/agents/getting-sta
 DronaHQ supports integrating custom and third-party tools into AI Agents through the **Model Context Protocol (MCP)**. When configuring an external MCP server in DronaHQ:
 
 - **Supported Transports in DronaHQ:**
-  - **Streamable HTTP** *(Implemented in Nasiko Sentinel Phase 5)*
+  - **Streamable HTTP** *(Implemented in Aegis Sentinel Phase 5)*
   - **Server-Sent Events (SSE)** *(Alternative DronaHQ transport)*
 - **Supported Authentication Modes in DronaHQ:**
   - No Authentication
@@ -30,11 +30,11 @@ DronaHQ supports integrating custom and third-party tools into AI Agents through
 
 ### Step 2: Configure Server Endpoint
 In the MCP configuration modal:
-- **Server Name:** `Nasiko-Sentinel`
+- **Server Name:** `Aegis-Sentinel`
 - **Transport Type:** Select `Streamable HTTP`
 - **Server URL:**  
   - For local development with secure tunnel: `https://<your-tunnel-domain>.ngrok-free.app/mcp`
-  - For internal Kubernetes/VPC deployment: `http://sentinel-service.nasiko-system.svc.cluster.local:8000/mcp`
+  - For internal Kubernetes/VPC deployment: `http://sentinel-service.aegis-system.svc.cluster.local:8000/mcp`
 
 ### Step 3: Configure Authentication
 Select one of the following authentication methods supported by DronaHQ:

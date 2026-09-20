@@ -61,7 +61,7 @@ export class MCPServer {
         result: {
           protocolVersion: "2024-11-05",
           capabilities: { tools: {} },
-          serverInfo: { name: "nasiko-sentinel-ts", version: "0.1.0" },
+          serverInfo: { name: "aegis-sentinel-ts", version: "0.1.0" },
         },
       };
     }
@@ -173,7 +173,7 @@ export class MCPServer {
         return this.autoscaler.getStatus();
 
       case "health":
-        return { status: "ok", service: "nasiko-sentinel-ts", runtime: "typescript" };
+        return { status: "ok", service: "aegis-sentinel-ts", runtime: "typescript" };
 
       default:
         throw new Error(`Unregistered tool: ${name}`);

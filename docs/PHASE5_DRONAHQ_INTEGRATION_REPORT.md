@@ -1,7 +1,7 @@
 # Phase 5 DronaHQ Integration Discovery
 
 ## Executive Summary
-This document provides the discovery, architecture inspection, and compatibility analysis for integrating **Nasiko Sentinel** with **DronaHQ** in **Phase 5**.
+This document provides the discovery, architecture inspection, and compatibility analysis for integrating **Aegis Sentinel** with **DronaHQ** in **Phase 5**.
 
 Following strict Phase 5 discovery constraints:
 - **No implementation code has been written.**
@@ -12,7 +12,7 @@ Following strict Phase 5 discovery constraints:
 
 ## 1. Current MCP Architecture
 
-Nasiko Sentinel currently implements a standards-compliant **Model Context Protocol (MCP)** server conforming to the `2024-11-05` protocol specification:
+Aegis Sentinel currently implements a standards-compliant **Model Context Protocol (MCP)** server conforming to the `2024-11-05` protocol specification:
 
 ### Protocol & Dispatch Details
 - **Specification Version:** `2024-11-05`
@@ -26,7 +26,7 @@ Nasiko Sentinel currently implements a standards-compliant **Model Context Proto
 
 ### Registered Tools (14 Active Tools)
 1. `get_health`: Foundation & dependency reachability probe.
-2. `get_agent_status`: Nasiko UUID workload & pod status observation.
+2. `get_agent_status`: Aegis UUID workload & pod status observation.
 3. `get_pending_pods`: Unschedulable pod listing and request normalization.
 4. `get_pod_events`: Pod event extraction & `FailedScheduling` analysis.
 5. `get_node_capacity`: Cluster and per-node compute allocatables.
@@ -150,7 +150,7 @@ To support DronaHQ in Phase 5, the following minimal, additive changes will be r
                             │ HTTPS (Bearer / API Key Auth)
                             ▼
 ┌────────────────────────────────────────────────────────┐
-│        Nasiko Sentinel HTTP / MCP Gateway              │
+│        Aegis Sentinel HTTP / MCP Gateway              │
 │  - HTTP / SSE Transport Adapter                        │
 │  - Inbound Authentication Validation                   │
 │  - JSON-RPC 2.0 Dispatcher                             │

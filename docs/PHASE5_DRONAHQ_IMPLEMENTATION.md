@@ -1,7 +1,7 @@
 # Phase 5: DronaHQ Streamable HTTP Transport Implementation
 
 ## 1. Overview & Architectural Role
-Phase 5 introduces the **Streamable HTTP Network Transport Adapter** (`HttpMCPServer`) for Nasiko Sentinel, enabling remote AI orchestrators, custom frontends, and **DronaHQ AI Agents** to interact with Sentinel's Model Context Protocol (MCP) server over standard HTTP without compromising security, policy supremacy, or existing `stdio` transport capabilities.
+Phase 5 introduces the **Streamable HTTP Network Transport Adapter** (`HttpMCPServer`) for Aegis Sentinel, enabling remote AI orchestrators, custom frontends, and **DronaHQ AI Agents** to interact with Sentinel's Model Context Protocol (MCP) server over standard HTTP without compromising security, policy supremacy, or existing `stdio` transport capabilities.
 
 ---
 
@@ -63,7 +63,7 @@ Returns service status, environment, active components, and dependency readiness
   ```json
   {
     "status": "ok",
-    "service": "nasiko-sentinel",
+    "service": "aegis-sentinel",
     "version": "0.1.0",
     "environment": "development",
     "phase": 5,

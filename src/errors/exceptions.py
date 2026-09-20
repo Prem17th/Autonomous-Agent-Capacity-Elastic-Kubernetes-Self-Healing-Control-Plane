@@ -1,10 +1,10 @@
-"""Error types and central exception handling for Nasiko Sentinel."""
+"""Error types and central exception handling for Aegis Sentinel."""
 
 from typing import Any, Dict, Optional
 
 
 class SentinelError(Exception):
-    """Base exception class for all Nasiko Sentinel errors."""
+    """Base exception class for all Aegis Sentinel errors."""
 
     def __init__(
         self,
@@ -60,7 +60,7 @@ class InfrastructureError(SentinelError):
 
 
 class ExternalServiceError(SentinelError):
-    """Raised when interactions with external services (Nasiko API, AWS Bedrock) fail."""
+    """Raised when interactions with external services (Aegis API, AWS Bedrock) fail."""
 
     def __init__(self, message: str, details: Optional[Dict[str, Any]] = None) -> None:
         super().__init__(message=message, code="EXTERNAL_SERVICE_ERROR", details=details)

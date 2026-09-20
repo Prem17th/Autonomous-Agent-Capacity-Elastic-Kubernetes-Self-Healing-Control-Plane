@@ -1,4 +1,4 @@
-"""Kubernetes module for Nasiko Sentinel."""
+"""Kubernetes module for Aegis Sentinel."""
 
 from src.kubernetes.adapter import KubernetesAdapter
 from src.kubernetes.client import BaseKubeClient, KubernetesClient, MockKubernetesClient

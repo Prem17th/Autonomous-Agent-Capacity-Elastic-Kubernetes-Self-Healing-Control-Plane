@@ -3,7 +3,7 @@ import { MCPServer } from "../src/server/mcpServer.ts";
 import { RecoveryPolicyEngine } from "../src/policy/policyEngine.ts";
 
 async function runTests() {
-  console.log("=== Running TypeScript Nasiko Sentinel Test Suite ===");
+  console.log("=== Running TypeScript Aegis Sentinel Test Suite ===");
   let passed = 0;
   let failed = 0;
 

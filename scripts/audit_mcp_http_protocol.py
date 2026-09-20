@@ -76,7 +76,7 @@ def send_http_raw(
 
 def main() -> int:
     print("=================================================================")
-    print("Nasiko Sentinel — Phase 5.1 Protocol Wire-Compatibility Audit")
+    print("Aegis Sentinel — Phase 5.1 Protocol Wire-Compatibility Audit")
     print("=================================================================")
 
     api_key = "sentinel-audit-api-key-999"

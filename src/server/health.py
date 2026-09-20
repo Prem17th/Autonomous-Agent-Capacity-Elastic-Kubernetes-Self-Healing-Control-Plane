@@ -1,4 +1,4 @@
-"""Health check and status reporting for Nasiko Sentinel."""
+"""Health check and status reporting for Aegis Sentinel."""
 
 from datetime import datetime, timezone
 from typing import Any, Dict, Optional
@@ -70,7 +70,7 @@ def get_health_status(
         },
         "roadmap": {
             "phase_1": "foundation (completed)",
-            "phase_2": "nasiko_kubernetes_observation (completed)",
+            "phase_2": "aegis_kubernetes_observation (completed)",
             "phase_3": "controlled_autoscaling (completed)",
             "phase_4": "bedrock_reasoning (completed)",
             "phase_5": "dronahq_integration (planned)",

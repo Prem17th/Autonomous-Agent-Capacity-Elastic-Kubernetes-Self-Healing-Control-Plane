@@ -35,8 +35,8 @@ class KubernetesAdapter:
 
     def get_agent_status(self, agent_id: str, namespace: Optional[str] = None) -> Optional[NormalizedDeployment]:
         """
-        Query deployment status for a Nasiko agent.
-        Per verified Nasiko contract, deployment is named with the agent UUID.
+        Query deployment status for a Aegis agent.
+        Per verified Aegis contract, deployment is named with the agent UUID.
         """
         if not agent_id or not isinstance(agent_id, str):
             raise ValidationError("agent_id must be a non-empty string", details={"agent_id": agent_id})

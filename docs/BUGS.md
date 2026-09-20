@@ -1,4 +1,4 @@
-# Nasiko Sentinel - Bug Tracker
+# Aegis Sentinel - Bug Tracker
 
 ## Active Bugs
 No known bugs currently identified.

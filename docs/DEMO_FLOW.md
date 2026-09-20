@@ -1,4 +1,4 @@
-# Nasiko Sentinel - Target Demo Flow (Planned)
+# Aegis Sentinel - Target Demo Flow (Planned)
 
 > [!NOTE]
 > This document describes the planned end-to-end hackathon demonstration flow.
@@ -9,7 +9,7 @@
 ## Planned Scenario: Autonomous Capacity Scaling for Unschedulable Agents
 
 ```
-Step 1: User Request       → User requests Nasiko agent creation via DronaHQ interface.
+Step 1: User Request       → User requests Aegis agent creation via DronaHQ interface.
 Step 2: Capacity Exhaustion→ Cluster lacks CPU/memory to schedule agent pod; pod transitions to Pending.
 Step 3: Detection          → Sentinel detects pod stuck in Unschedulable state via `get_pending_pods`.
 Step 4: AI Diagnosis       → AWS Bedrock analyzes scheduling events via `diagnose_capacity`.
@@ -26,10 +26,10 @@ Step 9: Explanation Display→ DronaHQ presents recovery timeline and diagnostic
 
 ### 1. Initial State: Saturated Cluster
 - A Kubernetes cluster has running workloads utilizing 95%+ of allocatable CPU/memory.
-- A user requests a high-resource Nasiko agent through the DronaHQ portal.
+- A user requests a high-resource Aegis agent through the DronaHQ portal.
 
 ### 2. Failure Occurrence: Pod Unschedulable
-- Nasiko provisions an agent Pod manifest in Kubernetes.
+- Aegis provisions an agent Pod manifest in Kubernetes.
 - Default Kubernetes scheduler rejects the pod due to `0/N nodes available: Insufficient cpu`.
 - The pod remains in `Pending` state with event `FailedScheduling`.
 

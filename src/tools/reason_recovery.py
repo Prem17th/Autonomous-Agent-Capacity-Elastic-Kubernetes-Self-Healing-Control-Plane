@@ -13,7 +13,7 @@ logger = get_logger("tools.reason_recovery")
 
 REASON_RECOVERY_NAME = "reason_recovery"
 REASON_RECOVERY_DESC = (
-    "Analyze an unschedulable Nasiko agent pod using AI reasoning (or deterministic fallback) "
+    "Analyze an unschedulable Aegis agent pod using AI reasoning (or deterministic fallback) "
     "to formulate a structured RecoveryProposal before submitting to the RecoveryPolicyEngine."
 )
 REASON_RECOVERY_SCHEMA = {
@@ -25,7 +25,7 @@ REASON_RECOVERY_SCHEMA = {
         },
         "agent_id": {
             "type": "string",
-            "description": "Optional Nasiko agent UUID.",
+            "description": "Optional Aegis agent UUID.",
         },
         "namespace": {
             "type": "string",

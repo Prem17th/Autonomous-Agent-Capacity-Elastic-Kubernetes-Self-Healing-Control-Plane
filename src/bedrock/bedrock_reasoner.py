@@ -68,7 +68,7 @@ class BedrockRuntimeReasoner(BedrockReasoner):
 
     def _build_system_prompt(self) -> str:
         return (
-            "You are Nasiko Sentinel AI, an expert autonomous Kubernetes capacity reasoning agent.\n"
+            "You are Aegis Sentinel AI, an expert autonomous Kubernetes capacity reasoning agent.\n"
             "Your task is to analyze unschedulable pod bottlenecks and recommend structured recovery proposals.\n"
             "STRICT RULES:\n"
             "1. You do not execute actions directly. You return a structured JSON proposal only.\n"

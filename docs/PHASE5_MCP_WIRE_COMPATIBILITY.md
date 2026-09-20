@@ -1,7 +1,7 @@
 # MCP Streamable HTTP Compatibility Audit
 
 ## Executive Summary
-This document provides a protocol-level wire-compatibility audit of the **Nasiko Sentinel Streamable HTTP Transport Adapter** (`src/server/http_server.py` and `MCPServer.handle_request()`).
+This document provides a protocol-level wire-compatibility audit of the **Aegis Sentinel Streamable HTTP Transport Adapter** (`src/server/http_server.py` and `MCPServer.handle_request()`).
 
 It benchmarks the server's wire behavior against:
 1. The **Model Context Protocol (MCP) Specification** (`https://modelcontextprotocol.io/`).
@@ -13,7 +13,7 @@ It benchmarks the server's wire behavior against:
 - **Implemented Version:** `2024-11-05` (the foundation Model Context Protocol specification).
 - **Capability Negotiation (`initialize`):**
   - Accepts `protocolVersion: "2024-11-05"`, `capabilities`, `clientInfo`.
-  - Responds with `protocolVersion: "2024-11-05"`, `capabilities: { "tools": { "listChanged": false } }`, and `serverInfo: { "name": "nasiko-sentinel", "version": "0.1.0" }`.
+  - Responds with `protocolVersion: "2024-11-05"`, `capabilities: { "tools": { "listChanged": false } }`, and `serverInfo: { "name": "aegis-sentinel", "version": "0.1.0" }`.
 - **Notifications:**
   - Handles `notifications/initialized` and returns `HTTP 204 No Content`.
 

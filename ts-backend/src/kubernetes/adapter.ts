@@ -13,12 +13,12 @@ export class KubernetesAdapter {
     // Seed test pending pod
     this.pods.set("agent-pending-cpu", {
       name: "agent-pending-cpu",
-      namespace: "nasiko-agents",
+      namespace: "aegis-agents",
       phase: "Pending",
       requested_resources: { cpu_milli: 2000, memory_bytes: 1073741824 },
       conditions: [{ type: "PodScheduled", status: "False", reason: "Unschedulable" }],
       created_at: new Date().toISOString(),
-      labels: { "nasiko.io/agent-id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11" },
+      labels: { "aegis.io/agent-id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11" },
     });
 
     // Seed events
@@ -68,11 +68,11 @@ export class KubernetesAdapter {
     ];
   }
 
-  public getPod(name: string, namespace: string = "nasiko-agents"): Pod | undefined {
+  public getPod(name: string, namespace: string = "aegis-agents"): Pod | undefined {
     return this.pods.get(name);
   }
 
-  public getPendingPods(namespace: string = "nasiko-agents"): Pod[] {
+  public getPendingPods(namespace: string = "aegis-agents"): Pod[] {
     return Array.from(this.pods.values()).filter(p => p.phase === "Pending");
   }
 

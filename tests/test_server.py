@@ -44,7 +44,7 @@ class TestMCPServer(unittest.TestCase):
         """Verify health check response contents and dependency separation."""
         status = get_health_status(self.settings, k8s_connected=True)
         self.assertEqual(status["status"], "ok")
-        self.assertEqual(status["service"], "nasiko-sentinel")
+        self.assertEqual(status["service"], "aegis-sentinel")
         self.assertEqual(status["version"], "0.1.0")
         self.assertEqual(status["environment"], "development")
         self.assertEqual(status["phase"], 4)
@@ -87,7 +87,7 @@ class TestMCPServer(unittest.TestCase):
         self.assertEqual(res["jsonrpc"], "2.0")
         self.assertEqual(res["id"], 1)
         self.assertIn("result", res)
-        self.assertEqual(res["result"]["serverInfo"]["name"], "nasiko-sentinel")
+        self.assertEqual(res["result"]["serverInfo"]["name"], "aegis-sentinel")
         self.assertEqual(res["result"]["serverInfo"]["version"], "0.1.0")
         self.assertIn("tools", res["result"]["capabilities"])
 
